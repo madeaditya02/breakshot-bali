@@ -18,14 +18,19 @@ use App\Http\Resources\WeeklyEventResource;
 
 class MainController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $menu = Menu::orderBy('price')->where('show', true)->limit(4)->get();
-        $weekly = WeeklyEventResource::collection(Event::latest('start')->whereNotNull('weekly_day')->get());
-        return Inertia::render('Index', [
-            'menus' => $menu,
-            'weekly' => $weekly,
-        ]);
+        $weekly = WeeklyEventResource::collection(Event::latest('start')->whereNotNull('weekly_day')->limit(2)->get());
+        // return Inertia::render('Index', [
+        //     'menus' => $menu,
+        //     'weekly' => $weekly,
+        // ]);
+        if ($request->inertia()) {
+    		return response('', 409)
+    			->header('X-Inertia-Location', url()->current());
+    	}
+        return view('index', compact('menu', 'weekly'));
     }
     
     public function events()
@@ -96,12 +101,12 @@ class MainController extends Controller
                     Carbon::setLocale('id');
                     $month = now()->isoFormat('MMMM');
                     $numbers = $service->getSpreadsheetValues("$month!A5:A");
-                    $number = (int) $numbers[count($numbers)-1][0];
+                    $number = $numbers ? (int) $numbers[count($numbers)-1][0] : 0;
                     $service->appendValues([
-                        [$number ? $number + 1 : "","RES-$reservation->id", $reservation->start->format('j/n/Y'), '', $reservation->name, $reservation->group ?? "", $reservation->agenda, $reservation->menu_type, $reservation->count, ($reservation->start->format('H:i')." - ".$reservation->end->format('H:i')), $reservation->type]
-                    ], ['valueInputOption' => "USER_ENTERED"]);
+                        [$number + 1,"RES-$reservation->id", $reservation->start->format('j/n/Y'), '', $reservation->name, $reservation->group ?? "", $reservation->agenda, $reservation->menu_type, $reservation->count, ($reservation->start->format('H:i')." - ".$reservation->end->format('H:i')), $reservation->type]
+                    ], $month, ['valueInputOption' => "USER_ENTERED"]);
                 } catch (\Throwable $th) {
-                    
+                    dd($th);
                 }
             }
         }

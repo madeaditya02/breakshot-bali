@@ -73,10 +73,10 @@ document.body.classList.remove('admin')
         class="navbar px-8 sm:px-12 md:px-20 py-4 flex flex-col md:flex-row justify-between items-center fixed top-0 left-0 right-0 transition-all z-40 text-white"
         :class="{ 'bg-primary/90': scrolled, '!bg-primary/90': showNav }">
         <div class="flex justify-between w-full md:w-auto">
-          <Link href="/">
-          <!-- <h2 class="text-xl">Breakshot Bali</h2> -->
-          <img src="/assets/logo.jpg" alt="" class="size-12 object-cover rounded-md">
-          </Link>
+          <a href="/">
+            <!-- <h2 class="text-xl">Breakshot Bali</h2> -->
+            <img src="/assets/logo.jpg" alt="" class="size-12 object-cover rounded-md">
+          </a>
           <button class="md:hidden" @click="showNav = !showNav">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
               stroke="currentColor" class="size-7">
@@ -86,7 +86,7 @@ document.body.classList.remove('admin')
         </div>
         <div class="flex-col md:flex-row gap-4 lg:gap-8  items-center"
           :class="{ 'hidden md:flex': !showNav, 'flex': showNav }">
-          <Link href="/">Home</Link>
+          <a href="/">Home</a>
           <Link href="/menu">Menu</Link>
           <Link href="/reservation">Reservation</Link>
           <Link href="/events">Events</Link>
@@ -105,7 +105,7 @@ document.body.classList.remove('admin')
         <div class="hidden sm:block col-span-3"></div>
         <div class="col-span-6 sm:col-span-2 flex flex-col gap-2.5 sm:gap-4">
           <h4 class="font-playfair text-lg font-medium">Links</h4>
-          <Link href="/">Home</Link>
+          <a href="/">Home</a>
           <Link href="/menu">Menu</Link>
           <Link href="/reservation">Reservation</Link>
           <Link href="/events">Events</Link>
@@ -116,8 +116,8 @@ document.body.classList.remove('admin')
         </div>
         <div class="col-span-6 sm:col-span-2 flex flex-col gap-2.5 sm:gap-4">
           <h4 class="font-playfair text-lg font-medium">Company</h4>
-          <Link href="/">Terms of Service</Link>
-          <Link href="/">Privacy Policy</Link>
+          <a href="/">Terms of Service</a>
+          <a href="/">Privacy Policy</a>
         </div>
       </footer>
     </div>

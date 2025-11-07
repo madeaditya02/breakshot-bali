@@ -82,10 +82,10 @@ class ReservationController extends Controller
                     Carbon::setLocale('id');
                     $month = now()->isoFormat('MMMM');
                     $numbers = $service->getSpreadsheetValues("$month!A5:A");
-                    $number = (int) $numbers[count($numbers)-1][0];
+                    $number = $numbers ? (int) $numbers[count($numbers)-1][0] : 0;
                     $service->appendValues([
-                        [$number ? $number + 1 : "","RES-$reservation->id", $reservation->start->format('j/n/Y'), '', $reservation->name, $reservation->group ?? "", $reservation->agenda, $reservation->menu_type, $reservation->count, ($reservation->start->format('H:i')." - ".$reservation->end->format('H:i')), $reservation->type]
-                    ], ['valueInputOption' => "USER_ENTERED"]);
+                        [$number + 1,"RES-$reservation->id", $reservation->start->format('j/n/Y'), '', $reservation->name, $reservation->group ?? "", $reservation->agenda, $reservation->menu_type, $reservation->count, ($reservation->start->format('H:i')." - ".$reservation->end->format('H:i')), $reservation->type]
+                    ], $month, ['valueInputOption' => "USER_ENTERED"]);
                 } catch (\Throwable $th) {
                     
                 }

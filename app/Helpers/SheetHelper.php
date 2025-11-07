@@ -28,9 +28,9 @@ class SheetHelper
             ->getValues();
     }
 
-    public function appendValues(array $values, $options = ['valueInputOption' => 'RAW'])
+    public function appendValues(array $values, $month = "", $options = ['valueInputOption' => 'RAW'])
     {
-        $range = "B5:M5";
+        $range = "$month!B5:M5";
         $body = new Sheets\ValueRange([
             'values' => $values
         ]);
