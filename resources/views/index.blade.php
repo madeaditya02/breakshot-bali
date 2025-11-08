@@ -24,9 +24,9 @@
 <body>
     <div class="min-h-screen bg-transparent">
         {{-- Navbar --}}
-        <div class="relative z-10">
+        <div class="relative z-10 w-full overflow-x-hidden">
             <header
-                class="navbar px-8 sm:px-12 md:px-20 py-4 flex flex-col md:flex-row justify-between items-center fixed top-0 left-0 right-0 transition-all z-40 text-white">
+                class="navbar px-8 sm:px-12 md:px-20 py-4 flex flex-col md:flex-row justify-between items-center fixed top-0 left-0 right-0 transition-all z-40 text-white w-full">
                 <div class="flex justify-between w-full md:w-auto">
                     <a href="/">
                         <img src="/assets/logo.jpg" alt="" class="size-12 object-cover rounded-md">

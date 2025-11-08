@@ -39,8 +39,9 @@ defineProps<{
     <div class="container mx-auto px-8 sm:px-12 md:px-20 mt-20">
       <h2 class="text-3xl md:text-5xl font-playfair font-semibold">Others Events</h2>
       <div class="mt-12 mb-20 flex flex-col gap-8">
-        <div v-for="event in others" :key="event.id" class="bg-[#F1F0EA] rounded-lg p-8 flex gap-7">
-          <img :src="event.image" alt="" class="h-[140px] w-60 rounded-lg">
+        <div v-for="event in others" :key="event.id"
+          class="bg-[#F1F0EA] rounded-lg p-8 flex gap-7 flex-col sm:flex-row">
+          <img :src="event.image" alt="" class="h-[140px] w-full sm:w-60 rounded-lg">
           <div>
             <h3 class="text-3xl font-semibold font-playfair">{{ event.name }}</h3>
             <div class="flex items-center gap-2.5 mt-5">
